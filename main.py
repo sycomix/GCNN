@@ -122,10 +122,10 @@ if __name__ == '__main__':
 
 	t = time.time()
 	model.train()
-	for epoch in tqdm(range(args.epochs)):
+	correct = 0
+	for _ in tqdm(range(args.epochs)):
 		loss_train = 0.0
-		correct = 0
-		for i, data in enumerate(train_loader):
+		for data in train_loader:
 			optimizer.zero_grad()
 			data = data.to(args.device)
 			out = model(data.x, data.edge_index, data.batch)
